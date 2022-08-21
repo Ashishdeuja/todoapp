@@ -1,0 +1,133 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <style>
+  .card {
+    display: block;
+   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5),
+               0 6px 20px 0 rgba(0,0,0,0.39);
+   background: rgb(159, 160, 219);
+   margin-bottom : 5%;
+   border-radius: 25px;
+   padding : 2%;
+   overflow: auto;
+   resize: both;
+   text-overflow: ellipsis;
+  }
+  .card:hover{
+    background: lightblue;
+  }
+
+  .submit_form{
+      display: block;
+    text-align: center;
+    padding: 3%;
+    background: rgb(167, 228, 210);
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4),
+                0 6px 20px 0 rgba(0,0,0,0.36);
+    /* width:20%; */
+    
+  }
+
+  .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+  .alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+}
+.col-md-8{
+    display: block;
+    width: 60%;
+    font-weight: bold;
+    line-height: 30px;
+    margin-top: 0.5cm;
+    margin-left: 1cm;
+    
+  }
+  .col-md-3{
+      display: block;
+      position:absolute;
+      top:90px;
+    width: 23%;
+    font-weight: bold;
+    line-height: 30px;
+    margin-top: 0.5cm;
+    margin-left: 31cm;
+    
+  }
+  
+  .row {
+  margin-right: -15px;
+  margin-left: -15px;
+ }
+ .hr{
+     color: grey;
+ }
+  </style>
+
+</head>
+
+<body  class="container-fluid">
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">
+    <strong>{{message}}</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <center class="row">
+    <h1><i>Note</i></h1>
+    <hr />
+  </center>
+
+  <div class="row">
+
+    <div class="col-md-8">
+
+      {% for i in list %}
+      <div class="card">
+       <center><b>{{i.title}}</b></center>
+        <hr/>
+        <marquee direction = "right">{{i.date}}</marquee>
+        <hr/>
+        {{i.details}}
+        <br />
+        <br />
+        <form action="/del/{{i.id}}" method="POST" style=" padding-right: 4%; padding-bottom: 3%;">
+          {% csrf_token %}
+          <button value="remove" type="submit"  class="btn btn-primary" style="float: right;background-color: rgb(51, 173, 173);border-radius: 3px;font-size: medium;cursor: pointer;"><span class="glyphicon glyphicon-trash"></span>Remove</button>
+        </form>
+      </div>
+      {% endfor%}
+    </div>
+    <div class="col-md-1"> </div>
+    <div class="col-md-3" >
+      <div  class="submit_form">
+      <form  method="POST">
+        {% csrf_token %}
+        {{forms|crispy}}
+        <center>
+        <input type="submit" class="btn btn-default" value="submit" style="cursor: pointer;background-color: rgb(57, 177, 89);border-radius: 3px;font-size: medium;margin-top: 10px;"/>
+      </center>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

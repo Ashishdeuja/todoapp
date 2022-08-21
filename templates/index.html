@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<html>
+    <head>
+        <title>Hello</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <h1>
+            Impact of Technology
+        </h1>
+        <h2>My name is {{name}} <br>
+            <!-- My roll no is {{rollno}}<br> -->
+        </h2>
+        <a href="{% url 'page1' %}">Go to page 1</a>
+        <img src="{% static 'images/tech.jpg' %}"/>
+        <p>
+            Technology is simply known as the ocean of skills, techniques and method used in the production of goods and services to produce something new every day. Technology can also be said as never ending updates. In todays world, every people are dependent upon the technology. Without technology it is very difficult for human being to do their works. Technology has made a great change in todays world. The use of electronic devices and their connections through various networking mediums has made it impossible to determine the future of technology. With every new invention our life is getting more busy and social. We are getting addicted in the technological advancement and becoming unable to a small thing without using technology.
+        </p>
+        <ul>
+            {% for num in lists %}
+            <li>{{num}}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
+{% endblock content%}

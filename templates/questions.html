@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/question.css' %}">
+</head>
+<body>
+    <ul >
+    {% for question in questions %}
+        <li class="question">{{question}}
+            <ul>
+                {% for answer in question.answers.all %}
+                <li class="answer">{{answer|safe}}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
+{% endblock content%}

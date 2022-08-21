@@ -1,0 +1,24 @@
+body{
+    background-color: azure;
+}
+.question{
+    line-height: 1cm;
+    font-family: "Arial";
+    font-size: medium;
+    font-weight: bold;
+}
+
+.answer{
+    line-height: 0.7cm;
+    color: blue;
+    font-weight: normal;
+}
+.footer{
+    color: brown;
+    position: absolute;
+    bottom: 0;
+    
+}
+h3{
+    text-align: center;
+}

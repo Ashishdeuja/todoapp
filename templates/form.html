@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form</title>
+        {% block css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}" type="text/css"/>
+    {% endblock css %}
+
+    
+</head>
+<body>
+    {% block content %}
+    <script>
+        tinymce.init({
+          selector: '#mytextarea'
+        });
+      </script>
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <select name="selected_question">
+                <option value="" disabled selected hidden>Choose the question...</option>
+                {% for question in questions %}
+                <option value="{{question}}">{{question}}</option>
+                {% endfor %}
+            </select>
+            <div>
+                <!-- <input name="answer" type="text" placeholder="Please enter your answer"/> -->
+                <textarea name="answer" id="mytextarea" cols="30" rows="20"></textarea>
+            </div>
+
+            <div>
+                <input type="submit">
+            </div>
+        </form>
+    </div>
+    {% endblock content %}
+</body>
+</html> 
+
+
